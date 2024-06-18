@@ -1,0 +1,12 @@
+o garfo sera lockado pelo mutex ate ele terminar de comer, assim
+evitando que outro filosofo pegue o mesmo garfo, quando ele
+terminar de comer unlocka o garfo e libero para outro filosofo e vai mimir.
+
+o filosofo nao deve morrer de fome, por isso deve ate o tempo estipulado
+
+a primeira coisa que um filosofo deve fazer é pegar um garfo dps o outro
+feito isso ele deve começar a comer.
+apos isso ele pensa e depois dorme. no momento em que ele solta o garfo
+o proximo filoso ja pode pegar o garfo e comer.
+
+*/
