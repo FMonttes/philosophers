@@ -6,7 +6,7 @@
 /*   By: felipe <felipe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 17:22:14 by felipe            #+#    #+#             */
-/*   Updated: 2024/06/14 10:41:51 by felipe           ###   ########.fr       */
+/*   Updated: 2024/06/24 16:07:09 by felipe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <pthread.h>
+#include <stdbool.h>
+#include  <sys/time.h>
 
 # define RST  "\033[0m"
 # define RED  "\033[31m"
@@ -45,10 +47,13 @@ typedef struct s_philo
 {
     int     id;
     long    meals;
-    pthread_t   *th_id;
+    bool    full;
+    long    last_meal;
+    pthread_t   th_id;
     t_fork  *first_fork;
     t_fork  *sec_fork;
     t_data  *data;
+    pthread_mutex_t philo_mutex;
 }   t_philo;
 
 typedef struct s_data
@@ -60,7 +65,12 @@ typedef struct s_data
     long    time_to_die;
     long    time_to_eat;
     long    time_to_sleep;
-    long    num_of_meals;
+    long    num_limit_meals;
+    long    start_time;
+    pthread_mutex_t data_mutex;
+    pthread_mutex_t write_lock;
+    bool    end_simu;
+    bool    ths_ready;
 }   t_data;
 
 
@@ -68,4 +78,12 @@ long    ft_atol(const char *nptr);
 void	get_data_from_input(t_data *data, char **av);
 void    *philo_life(void *philo);
 void    start_data(t_data *data);
-void philho_start(t_data *data);
+void    philho_start(t_data *data);
+void    wait_ths(t_data *data);
+void    dinner_start(t_data *data);
+void    write_status(t_philo *philo, t_token token);
+void    set_bool(pthread_mutex_t *mutex, bool *dest, bool value);
+bool    get_bool(pthread_mutex_t *mutex, bool *src);
+long    get_long(pthread_mutex_t *mutex, long *src);
+void    set_long(pthread_mutex_t *mutex, long *dest, long value);
+bool    simu_end(t_data *data);

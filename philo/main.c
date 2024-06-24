@@ -6,7 +6,7 @@
 /*   By: felipe <felipe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 11:07:03 by felipe            #+#    #+#             */
-/*   Updated: 2024/06/14 10:46:43 by felipe           ###   ########.fr       */
+/*   Updated: 2024/06/24 14:35:20 by felipe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int main(int ac, char **av)
         get_data_from_input(&data, av);
         start_data(&data);
         philho_start(&data);
+        dinner_start(&data);
     }
     else
         printf(RED"Error: Wrong number of arguments\n"RST);

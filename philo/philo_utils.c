@@ -6,7 +6,7 @@
 /*   By: felipe <felipe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 17:25:10 by felipe            #+#    #+#             */
-/*   Updated: 2024/06/14 10:48:08 by felipe           ###   ########.fr       */
+/*   Updated: 2024/06/24 16:06:32 by felipe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ void	get_data_from_input(t_data *data, char **av)
 	data->time_to_eat = ft_atol(av[3]) * 1000;
 	data->time_to_sleep = ft_atol(av[4]) * 1000;
 	if (av[5])
-		data->num_of_meals = ft_atol(av[5]);
+		data->num_limit_meals = ft_atol(av[5]);
 	else
-		data->num_of_meals = -1;
+		data->num_limit_meals = -1;
 }
 
 void	start_data(t_data *data)
@@ -52,6 +52,10 @@ void	start_data(t_data *data)
 	int	i;
 
 	i = -1;
+	data->end_simu = false;
+	data->ths_ready = false;
+	pthread_mutex_init(&data->data_mutex, NULL);
+	pthread_mutex_init(&data->write_lock, NULL);
 	data->forks = malloc(sizeof(t_fork) * data->num_philos);
 	data->philos = malloc(sizeof(t_philo) * data->num_philos);
 	while (++i < data->num_philos)
@@ -91,6 +95,8 @@ void philho_start(t_data *data)
 		philo->id = i + 1;
 		philo->meals = 0;
 		philo->data = data;
+		philo->full = false;
+		pthread_mutex_init(&philo->philo_mutex, NULL);
 		dessign_forks(philo, data->forks, i);
 	}
 }
