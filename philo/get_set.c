@@ -3,50 +3,50 @@
 /*                                                        :::      ::::::::   */
 /*   get_set.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: felipe <felipe@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fmontes <fmontes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/24 15:47:46 by felipe            #+#    #+#             */
-/*   Updated: 2024/06/24 15:51:48 by felipe           ###   ########.fr       */
+/*   Created: 2024/06/24 21:42:39 by felipe            #+#    #+#             */
+/*   Updated: 2024/07/09 07:46:44 by fmontes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void set_bool(pthread_mutex_t *mutex, bool *dest, bool value)
+void	set_bool(pthread_mutex_t *mutex, bool *dest, bool value)
 {
-    pthread_mutex_lock(mutex);
-    *dest = value;
-    pthread_mutex_unlock(mutex);
+	pthread_mutex_lock(mutex);
+	*dest = value;
+	pthread_mutex_unlock(mutex);
 }
 
-bool get_bool(pthread_mutex_t *mutex, bool *src)
+bool	get_bool(pthread_mutex_t *mutex, bool *src)
 {
-    bool value;
+	bool	value;
 
-    pthread_mutex_lock(mutex);
-    value = *src;
-    pthread_mutex_unlock(mutex);
-    return (value);
+	pthread_mutex_lock(mutex);
+	value = *src;
+	pthread_mutex_unlock(mutex);
+	return (value);
 }
 
-long get_long(pthread_mutex_t *mutex, long *src)
+long	get_long(pthread_mutex_t *mutex, long *src)
 {
-    long value;
+	long	value;
 
-    pthread_mutex_lock(mutex);
-    value = *src;
-    pthread_mutex_unlock(mutex);
-    return (value);
+	pthread_mutex_lock(mutex);
+	value = *src;
+	pthread_mutex_unlock(mutex);
+	return (value);
 }
 
-void set_long(pthread_mutex_t *mutex, long *dest, long value)
+void	set_long(pthread_mutex_t *mutex, long *dest, long value)
 {
-    pthread_mutex_lock(mutex);
-    *dest = value;
-    pthread_mutex_unlock(mutex);
+	pthread_mutex_lock(mutex);
+	*dest = value;
+	pthread_mutex_unlock(mutex);
 }
 
-bool simu_end(t_data *data)
+bool	simu_end(t_data *data)
 {
-  return (get_bool(&data->data_mutex, &data->end_simu));
+	return (get_bool(&data->data_mutex, &data->end_simu));
 }
