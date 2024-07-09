@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmontes <fmontes@student.42.fr>            +#+  +:+       +#+        */
+/*   By: felipe <felipe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 20:41:17 by felipe            #+#    #+#             */
-/*   Updated: 2024/07/09 07:50:52 by fmontes          ###   ########.fr       */
+/*   Updated: 2024/07/09 16:55:24 by felipe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,3 +122,4 @@ void					increase_long(pthread_mutex_t *mutex, long *var);
 void					clean(t_data *data);
 void					think(t_philo *philo, bool odd);
 void					de_philo(t_philo *philo);
+void					wait_threads(t_data *data);
